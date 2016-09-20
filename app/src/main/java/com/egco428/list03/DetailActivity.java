@@ -1,10 +1,15 @@
 package com.egco428.list03;
 
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -22,6 +27,17 @@ public class DetailActivity extends AppCompatActivity {
         String courseDesc = getIntent().getStringExtra(MainActivity.Course_Desc);
         TextView descText = (TextView)findViewById(R.id.descriptionText);
         descText.setText(courseDesc);
+
+        String courseNum = getIntent().getStringExtra(MainActivity.Course_Num);
+        TextView numText = (TextView)findViewById(R.id.courseNumView);
+        numText.setText("Course Number = "+courseNum);
+        img(courseNum);
+
+        String courseCredits = getIntent().getStringExtra(MainActivity.Course_credit);
+        TextView creditText = (TextView)findViewById(R.id.creditView);
+        creditText.setText("Credits = "+courseCredits+"    ");
+
+
     }
 
     @Override
@@ -45,6 +61,21 @@ public class DetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+public void img(String course){
+    //int id = getResources().getIdentifier(course,"drawable",getPackageName());
+    HashMap<String, Integer> MMap = new HashMap<String, Integer>();
+    MMap.put("10101",R.drawable.pic1);
+    MMap.put("10102",R.drawable.pic2);
+    MMap.put("10103",R.drawable.pic3);
+    MMap.put("10104",R.drawable.pic4);
+    MMap.put("10105",R.drawable.pic5);
+    MMap.put("10106",R.drawable.pic6);
+    MMap.put("10107",R.drawable.pic7);
+    MMap.put("10108",R.drawable.pic8);
+
+    ImageView imagecourse = (ImageView)findViewById(R.id.imageView2);
+    imagecourse.setImageResource(MMap.get(course));
+}
 }
 
 
